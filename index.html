@@ -4,128 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reiseberichte von Georg Forster</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Grundlegendes Seitenlayout */
     body {
-      font-family: 'Merriweather', serif;
-      background-color: #fdf6e3;
-      color: #333;
+      font-family: 'EB Garamond', serif;
+      background-color: #faf3e0;
+      color: #3b3b3b;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      line-height: 1.8;
     }
+
     header {
-      background: #2a4d69;
-      color: white;
-      padding: 1rem 0;
+      background: url('https://www.toptal.com/designers/subtlepatterns/patterns/old_map.png') no-repeat center;
+      background-size: cover;
+      padding: 2rem;
       text-align: center;
+      color: #ffffff;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
     nav {
-      background: #4b86b4;
-      padding: 0.5rem;
+      background: #8c7b75;
+      padding: 1rem;
       text-align: center;
     }
+
     nav a {
       color: white;
-      margin: 0 15px;
       text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     main {
       padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border: 2px solid #ddd;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
+
+    h2 {
+      color: #795548;
+      font-weight: 600;
+    }
+
+    .highlight {
+      background-color: #f8e8c1;
+      padding: 0.5rem;
+      border-left: 4px solid #795548;
+      margin: 1rem 0;
+    }
+
     footer {
-      background: #2a4d69;
+      background: #3b3b3b;
       color: white;
       text-align: center;
-      padding: 1rem 0;
-      position: relative;
-    }
-    .card {
-      background: white;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-    }
-    #map {
-      height: 400px;
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 1rem;
+      padding: 1rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Reiseberichte von Georg Forster</h1>
-    <p>Eine digitale Edition historischer Reisen</p>
+    <p>Eine digitale Edition seiner faszinierenden Entdeckungen</p>
   </header>
 
   <nav>
-    <a href="#transkriptionen">Transkriptionen</a>
-    <a href="#karte">Reisekarte</a>
-    <a href="#projekt">Das Projekt</a>
+    <a href="#">Startseite</a>
+    <a href="#berichte">Berichte</a>
+    <a href="#karte">Karte</a>
   </nav>
 
   <main>
-    <section id="transkriptionen">
-      <div class="card">
-        <h2>Transkriptionen</h2>
-        <p>Hier finden Sie die transkribierten Reiseberichte Georg Forsters.</p>
-        <ul>
-          <li><a href="xml/reisebericht1.xml">Reisebericht 1</a></li>
-          <li><a href="xml/reisebericht2.xml">Reisebericht 2</a></li>
-        </ul>
-      </div>
-    </section>
+    <h2>Willkommen zur digitalen Edition</h2>
+    <p>Georg Forster war einer der bedeutendsten Reisenden und Naturforscher des 18. Jahrhunderts. Seine Berichte dokumentieren fremde Kulturen und faszinierende Entdeckungen.</p>
 
-    <section id="karte">
-      <div class="card">
-        <h2>Reisekarte</h2>
-        <p>Hier wird eine interaktive Karte mit Forsters Reiserouten angezeigt.</p>
-        <div id="map"></div>
-      </div>
-    </section>
+    <div class="highlight">
+      <p><strong>Zitat:</strong> "Reisen bildet nicht nur den Geist, sondern lässt uns auch die Welt mit neuen Augen sehen."</p>
+    </div>
 
-    <section id="projekt">
-      <div class="card">
-        <h2>Das Projekt</h2>
-        <p>Unser Ziel ist es, die Reiseberichte von Georg Forster für ein breites Publikum digital zugänglich zu machen und spannende Einblicke in seine Reisen zu bieten.</p>
-      </div>
-    </section>
+    <h2 id="berichte">Forsters bedeutende Reiseberichte</h2>
+    <p>Hier findest du eine Sammlung der wichtigsten Schriften und Reiseberichte von Georg Forster, liebevoll transkribiert und kommentiert.</p>
+
+    <h2 id="karte">Interaktive Weltkarte</h2>
+    <p>Auf der Karte können die wichtigsten Stationen von Forsters Reisen erkundet werden.</p>
   </main>
 
   <footer>
-    <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
+    <p>&copy; 2025 Digitale Edition Georg Forster | Projekt Digital Humanities</p>
   </footer>
-
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Initialisiere die Karte
-    var map = L.map('map').setView([51.1657, 10.4515], 5); // Deutschland als Startpunkt
-
-    // Füge eine OpenStreetMap-Kachel hinzu
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Beispielmarker für Orte von Forsters Reisen
-    var places = [
-      { coords: [48.8566, 2.3522], text: "Paris" },
-      { coords: [-17.6509, -149.4260], text: "Tahiti" },
-      { coords: [51.5074, -0.1278], text: "London" }
-    ];
-
-    places.forEach(function(place) {
-      L.marker(place.coords).addTo(map)
-        .bindPopup(place.text)
-        .openPopup();
-    });
-  </script>
 </body>
 </html>

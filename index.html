@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reiseberichte von Georg Forster</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     /* Grundlegendes Seitenlayout */
     body {
@@ -69,6 +70,13 @@
       margin: 1rem 0;
     }
 
+    #map {
+      height: 500px;
+      margin-top: 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+    }
+
     footer {
       background: #3b3b3b;
       color: white;
@@ -77,6 +85,7 @@
       margin-top: 2rem;
     }
   </style>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
   <header>
@@ -103,10 +112,34 @@
 
     <h2 id="karte">Interaktive Weltkarte</h2>
     <p>Auf der Karte können die wichtigsten Stationen von Forsters Reisen erkundet werden.</p>
+    <div id="map"></div>
   </main>
 
   <footer>
     <p>&copy; 2025 Digitale Edition Georg Forster | Projekt Digital Humanities</p>
   </footer>
+
+  <script>
+    // Karte initialisieren
+    var map = L.map('map').setView([20, 0], 2); // [Lat, Lng], Zoom-Level
+
+    // OpenStreetMap Layer hinzufügen
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Beispielkoordinaten für Forsters Reiseorte
+    var locations = [
+      { name: "Tahiti", coords: [-17.6509, -149.4260] },
+      { name: "Petersburg", coords: [59.9343, 30.3351] },
+      { name: "Kap der Guten Hoffnung", coords: [-34.3576, 18.4736] }
+    ];
+
+    locations.forEach(function(location) {
+      L.marker(location.coords)
+        .addTo(map)
+        .bindPopup(`<strong>${location.name}</strong>`);
+    });
+  </script>
 </body>
 </html>

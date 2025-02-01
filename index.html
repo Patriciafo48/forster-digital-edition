@@ -6,7 +6,6 @@
   <title>Reiseberichte von Georg Forster</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  
   <style>
     body {
       font-family: 'EB Garamond', serif;
@@ -58,38 +57,6 @@
       border-radius: 8px;
     }
 
-    .transcription-container {
-      display: flex;
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-
-    .original-image {
-      flex: 1;
-      text-align: center;
-    }
-
-    .original-image img {
-      max-width: 100%;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .transcription {
-      flex: 2;
-      padding: 20px;
-    }
-
-    .transcription h3 {
-      margin-top: 0;
-      color: #444;
-    }
-
     #map {
       height: 500px;
       margin-top: 20px;
@@ -105,12 +72,11 @@
       margin-top: 2rem;
     }
   </style>
-
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     function showTab(tabId) {
       document.querySelectorAll("main").forEach(main => main.style.display = "none");
-      document.getElementById(tabId).style.display = "block");
+      document.getElementById(tabId).style.display = "block";
     }
 
     window.onload = function() {
@@ -119,7 +85,6 @@
   </script>
 </head>
 <body>
-
   <header>
     <h1>Reiseberichte von Georg Forster</h1>
   </header>
@@ -133,31 +98,39 @@
 
   <main id="home">
     <h2>Projektbeschreibung und Zielsetzung</h2>
-    <p>Das Projekt zielt darauf ab, die Reiseberichte von Georg Forster digital aufzubereiten und öffentlich zugänglich zu machen.</p>
+    <p>Das Projekt zielt darauf ab, die Reiseberichte von Georg Forster digital aufzubereiten und öffentlich zugänglich zu machen. Mit einer Kombination aus Transkription, Visualisierung und informativen Materialien soll das Werk Forsters für moderne Leser neu erlebbar werden.</p>
+
+    <h2>Wer war Georg Forster?</h2>
+    <p>Georg Forster war ein bedeutender Naturforscher, Reiseschriftsteller und Ethnologe des 18. Jahrhunderts. Seine Reisen um die Welt, darunter die zweite Weltumsegelung mit James Cook, machten ihn zu einem der einflussreichsten Denker seiner Zeit.</p>
   </main>
 
   <main id="transcriptions" style="display: none;">
     <h2>Transkriptionen</h2>
-    <p>Hier wird die transkribierte Seite aus der XML-Datei geladen:</p>
-    <div class="transcription-container">
-      <div class="original-image">
-        <img src="0001_p017.jpg" alt="Originalseite">
-      </div>
-      <div class="transcription">
-        <h3>Transkription</h3>
-        <div id="transkriptionen">Lade Transkription...</div>
-      </div>
-    </div>
+    <p>Hier finden Sie die transkribierten Texte aus den Reiseberichten von Georg Forster:</p>
+    <ul>
+      <li><a href="transcription1.xml" target="_blank">Reisebericht 1</a></li>
+      <li><a href="transcription2.xml" target="_blank">Reisebericht 2</a></li>
+      <li><a href="transcription3.xml" target="_blank">Reisebericht 3</a></li>
+    </ul>
   </main>
 
   <main id="mapTab" style="display: none;">
     <h2>Interaktive Weltkarte</h2>
+    <p>Erkunden Sie die wichtigsten Stationen von Forsters Reisen:</p>
     <div id="map"></div>
   </main>
 
   <main id="aboutProject" style="display: none;">
     <h2>Über das Projekt</h2>
-    <p>Dieses Projekt wurde im Rahmen des Moduls "Digital Humanities" entwickelt.</p>
+    <p>Dieses Projekt wurde im Rahmen des Moduls "Digital Humanities" entwickelt. Ziel war es, historische Dokumente mithilfe digitaler Werkzeuge aufzubereiten und einer breiten Öffentlichkeit zugänglich zu machen.</p>
+    <h3>Verwendete Tools</h3>
+    <ul>
+      <li>Transkribus zur Texterkennung und Transkription</li>
+      <li>Leaflet.js zur interaktiven Kartenvisualisierung</li>
+      <li>HTML und CSS zur Website-Gestaltung</li>
+    </ul>
+    <h3>Arbeitsschritte</h3>
+    <p>Von der Digitalisierung der Texte bis zur Visualisierung der Reiseorte durchlief das Projekt verschiedene Phasen: Texterfassung, XML-Export, sowie die Gestaltung und Programmierung der Website.</p>
   </main>
 
   <footer>
@@ -165,24 +138,24 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (document.getElementById("transkriptionen")) {
-        fetch("0001_p017.xml")
-          .then(response => response.text())
-          .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-          .then(xml => {
-            let output = "";
-            xml.querySelectorAll("TextEquiv > Unicode").forEach(node => {
-              if (node.textContent.trim() !== "") {
-                output += `<p>${node.textContent}</p>`;
-              }
-            });
-            document.getElementById("transkriptionen").innerHTML = output;
-          })
-          .catch(error => console.error("Fehler beim Laden des XMLs:", error));
-      }
+    // Karte initialisieren
+    var map = L.map('map').setView([20, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var locations = [
+      { name: "Tahiti", coords: [-17.6509, -149.4260] },
+      { name: "Petersburg", coords: [59.9343, 30.3351] },
+      { name: "Kap der Guten Hoffnung", coords: [-34.3576, 18.4736] }
+    ];
+
+    locations.forEach(function(location) {
+      L.marker(location.coords)
+        .addTo(map)
+        .bindPopup(`<strong>${location.name}</strong>`);
     });
   </script>
-
 </body>
 </html>

@@ -1,131 +1,151 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reiseberichte von Georg Forster</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-  <style>
-    body {
-      font-family: 'Merriweather', serif;
-      background-color: #fdf6e3;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      background: #2a4d69;
-      color: white;
-      padding: 1rem 0;
-      text-align: center;
-    }
-    nav {
-      background: #4b86b4;
-      padding: 0.5rem;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-    }
-    footer {
-      background: #2a4d69;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      position: relative;
-    }
-    .card {
-      background: white;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-    }
-    #map {
-      height: 400px;
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reiseberichte von Georg Forster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url("https://raw.githubusercontent.com/Patriciafo48/forster-digital-edition/33ec69dc77a8fd8f209c7025233ddfeaa349f575/Landmap.png"); /* Hier die URL zur historischen Weltkarte */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center; /* Zentriert das Bild */
+        }
+
+        header {
+            background: #2a4d69;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background: #4b86b4;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparenter weißer Hintergrund für den Inhalt */
+            border-radius: 10px; /* Abgerundete Ecken für den Main-Bereich */
+            margin: 20px auto;
+            max-width: 90%; /* Breite des Hauptbereichs anpassen */
+        }
+
+        footer {
+            background: #2a4d69;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>Reiseberichte von Georg Forster</h1>
-    <p>Eine digitale Edition historischer Reisen</p>
-  </header>
+    <header>
+        <h1>Reiseberichte von Georg Forster</h1>
+        <p>Eine digitale Edition historischer Reisen</p>
+    </header>
 
-  <nav>
-    <a href="#transkriptionen">Transkriptionen</a>
-    <a href="#karte">Reisekarte</a>
-    <a href="#projekt">Das Projekt</a>
-  </nav>
+    <nav>
+        <a href="#transkriptionen">Transkriptionen</a>
+        <a href="#karte">Reisekarte</a>
+        <a href="#projekt">Das Projekt</a>
+    </nav>
 
-  <main>
-    <section id="transkriptionen">
-      <div class="card">
-        <h2>Transkriptionen</h2>
-        <p>Hier finden Sie die transkribierten Reiseberichte Georg Forsters.</p>
-        <ul>
-          <li><a href="xml/reisebericht1.xml">Reisebericht 1</a></li>
-          <li><a href="xml/reisebericht2.xml">Reisebericht 2</a></li>
-        </ul>
-      </div>
-    </section>
+    <main>
+        <section id="transkriptionen">
+            <div class="card">
+                <h2>Transkriptionen</h2>
+                <p>Hier finden Sie die transkribierten Reiseberichte Georg Forsters.</p>
+                <ul>
+                    <li><a href="xml/reisebericht1.xml">Reisebericht 1</a></li>
+                    <li><a href="xml/reisebericht2.xml">Reisebericht 2</a></li>
+                </ul>
+            </div>
+        </section>
 
-    <section id="karte">
-      <div class="card">
-        <h2>Reisekarte</h2>
-        <p>Hier wird eine interaktive Karte mit Forsters Reiserouten angezeigt.</p>
-        <div id="map"></div>
-      </div>
-    </section>
+        <section id="karte">
+            <div class="card">
+                <h2>Reisekarte</h2>
+                <p>Hier wird eine interaktive Karte mit Forsters Reiserouten angezeigt.</p>
+                <div id="map"></div>
+            </div>
+        </section>
 
-    <section id="projekt">
-      <div class="card">
-        <h2>Das Projekt</h2>
-        <p>Unser Ziel ist es, die Reiseberichte von Georg Forster für ein breites Publikum digital zugänglich zu machen und spannende Einblicke in seine Reisen zu bieten.</p>
-      </div>
-    </section>
-  </main>
+        <section id="projekt">
+            <div class="card">
+                <h2>Das Projekt</h2>
+                <p>Unser Ziel ist es, die Reiseberichte von Georg Forster für ein breites Publikum digital zugänglich zu
+                    machen und spannende Einblicke in seine Reisen zu bieten.</p>
+            </div>
+        </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
-  </footer>
+    <footer>
+        <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
+    </footer>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Initialisiere die Karte
-    var map = L.map('map').setView([51.1657, 10.4515], 5); // Deutschland als Startpunkt
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialisiere die Karte
+        var map = L.map('map').setView([51.1657, 10.4515], 5); // Deutschland als Startpunkt
 
-    // Füge eine OpenStreetMap-Kachel hinzu
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        // Füge eine OpenStreetMap-Kachel hinzu
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    // Beispielmarker für Orte von Forsters Reisen
-    var places = [
-      { coords: [48.8566, 2.3522], text: "Paris" },
-      { coords: [-17.6509, -149.4260], text: "Tahiti" },
-      { coords: [51.5074, -0.1278], text: "London" }
-    ];
+        // Beispielmarker für Orte von Forsters Reisen
+        var places = [
+            { coords: [48.8566, 2.3522], text: "Paris" },
+            { coords: [-17.6509, -149.4260], text: "Tahiti" },
+            { coords: [51.5074, -0.1278], text: "London" }
+        ];
 
-    places.forEach(function(place) {
-      L.marker(place.coords).addTo(map)
-        .bindPopup(place.text)
-        .openPopup();
-    });
-  </script>
+        places.forEach(function (place) {
+            L.marker(place.coords).addTo(map)
+                .bindPopup(place.text)
+                .openPopup();
+        });
+    </script>
 </body>
+
 </html>

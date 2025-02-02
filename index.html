@@ -1,71 +1,43 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Georg Forsters Schriften</title>
-    <!-- Google Fonts für moderne Schriftarten -->
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-ugSVxsRpWvBx1IDvchG5H3itHeTO1IoDnL+6HLjxmxW3zE5lj3dGLnUo8R64hYZzkE8ugPknj9t6ae3Dz4UtgQ==" crossorigin="anonymous"/>
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha384-mDHSN9O6CQOaLOE8cbJp+sEDjU+NrMuZ8c7ODrW3mEuyRjXi1tMmtMMDzJouQBZG" crossorigin=""/>
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha384-NbD05mrOBgkaGVCCLGu7nYwx65zAGwKcyi+k8s5dmi+zC/B9Y7c1lPTJFmDRbLXD" crossorigin=""></script>
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-QVjF8N3xXRXBlAhvHnKN4BmbWyRVt4pD9pZ7wRLD8TzWpFE6H1oD7RbHbDgCT4WsjCl8Vlx6WLmP25zMOuvB7A==" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        /* Grundlayout für die Seite */
+        /* Grundlayout */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
+        body {
             font-family: 'Roboto', sans-serif;
             color: #333;
-        }
-
-        body {
             background-image: url('https://raw.githubusercontent.com/TimMerges/TimesOfInterest/main/Landmap.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full viewport height */
         }
 
-        header, footer {
+        header,
+        footer {
             width: 100%;
             padding: 20px;
             background-color: rgba(30, 30, 30, 0.8);
             color: #fff;
             text-align: center;
-            }
-
-    /* Button-Design */
-    .btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        color: #FFFFFF;
-        background-color: #007bff; /* Blau */
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 1.2em;
-        text-align: center;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-        background-color: #0056b3; /* Dunkleres Blau beim Hover */
-    }
         }
 
         footer {
-            margin-top: auto;
+            margin-top: auto; /* Push footer to the bottom */
         }
 
         h1 {
@@ -73,146 +45,122 @@
             font-size: 2em;
         }
 
+        /* Navigation */
+        nav {
+            background-color: rgba(30, 30, 30, 0.8);
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center the tabs */
+        }
+
+        nav li {
+            margin: 0 10px; /* Add spacing between tabs */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(50, 50, 50, 0.8);
+        }
+
+
         /* Hauptinhalt */
         .main-content {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 60px 20px;
             text-align: center;
             margin: 20px;
             border-radius: 10px;
-        }
-
-        .main-content h2 {
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Schatten für bessere Lesbarkeit */
-            font-family: 'Times New Roman', serif; /* Klassische, elegante Schriftart */
-            font-weight: bold; /* Fettschrift */
-            font-size: 2.8em; /* Große Schriftgröße */
-            color: #FFFFFF; /* Goldene Farbe */
-            text-shadow: 
-        2px 2px 0px #000, /* Schwarzer Schatten */
-        -2px -2px 0px #000, /* Zusätzlicher Schatten für mehr Tiefe */
-        2px -2px 0px #000,
-        -2px 2px 0px #000;
-    text-align: center; /* Zentriert */
-    margin-top: -20px; /* Abstand nach oben */
-}
-
-        .main-content p {
-    color: #ffffff; /* Weiße Farbe */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Optional: Schatten für bessere Lesbarkeit */
-    font-size: 1.4em; /* Optional: Größere Schrift */
-    text-align: center; /* Zentrieren des Textes */
-}
-
-        /* Navigationsbuttons */
-        .nav-buttons {
-            display: flex;
-            flex-direction: row;
-            gap: 40px;
-        }
-
-        .nav-button {
-            background-color: rgba(30, 30, 30, 0.8);
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            width: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .nav-button:hover {
-            background-color: rgba(50, 50, 50, 0.8);
+        .main-content h2 {
+            margin-bottom: 20px;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 2.8em;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
         }
 
-        .nav-button img {
-            width: 100px;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 5px;
+        .main-content p {
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: 20px; /* Space below the intro text */
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-buttons {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-button {
-                width: 100%;
-                text-align: center;
-            }
+        /* Karte */
+        #map {
+            width: 80%; /* Adjust map width as needed */
+            height: 500px;
+            margin: 20px auto; /* Center the map */
+            border-radius: 10px; /* Rounded corners for the map */
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Header -->
     <header>
         <h1>Georg Forsters Weltreisen</h1>
-        <a href="info.html" class="btn">Über diese Website</a>
-
     </header>
-    
-    <div id="map" style="width: 100%; height: 500px; margin-top: 20px;"></div>
 
+    <nav>
+        <ul>
+            <li><a href="#">Startseite</a></li>
+            <li><a href="#">Über das Projekt</a></li>
+            <li><a href="#">Transkriptionen</a></li>
+            <li><a href="#">Interaktive Karte</a></li>
+        </ul>
+    </nav>
 
-    <!-- Hauptinhalt -->
     <div class="main-content">
         <h2>Entdecken Sie die Welt der Kultur und Geschichte durch die Augen von Georg Forster</h2>
-        <p>Bitte wählen Sie eine der folgenden Optionen:</p>
-        <div class="nav-buttons">
-            <a href="timeline.html" class="nav-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Ancestors_2.gif" alt="Geschichte">
-                Geschichte des Kulturschutzes
-            </a>
-            <a href="karte.html" class="nav-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Winkel-tripel-projection.jpg" alt="Karte">
-                Kulturstätten weltweit
-            </a>
-            <a href="page199.html" class="nav-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Book_icon.png" alt="Seite 199">
-                Seite 199
-            </a>
-        </div>
+        <p>Willkommen zu unserer digitalen Edition von Georg Forsters Reiseberichten. Erkunden Sie seine faszinierenden
+            Reisen und entdecken Sie die Vielfalt der Kulturen.</p>
+
+        <div id="map"></div>
     </div>
 
-    <!-- Füge den Leaflet-Karteninitialisierungscode hier ein -->
-<script>
-    // Initialisiere die Karte
-    var map = L.map('map').setView([51.1657, 10.4515], 5); // Koordinaten für Deutschland (Zentrum)
+    <script>
+        var map = L.map('map').setView([51.1657, 10.4515], 5);
 
-    // Füge ein Kartenlayer hinzu (OpenStreetMap)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    // Beispiel: Marker für die Reiseziele von Georg Forster
-    var locations = [
-        { coords: [51.5074, -0.1278], text: "London, England" }, // Beispiel: London
-        { coords: [48.8566, 2.3522], text: "Paris, Frankreich" }, // Beispiel: Paris
-        { coords: [52.5200, 13.4050], text: "Berlin, Deutschland" }, // Beispiel: Berlin
-    ];
+        var locations = [
+            { coords: [51.5074, -0.1278], text: "London, England" },
+            { coords: [48.8566, 2.3522], text: "Paris, Frankreich" },
+            { coords: [52.5200, 13.4050], text: "Berlin, Deutschland" },
+        ];
 
-    locations.forEach(function(location) {
-        L.marker(location.coords).addTo(map).bindPopup(location.text);
-    });
-</script>
+        locations.forEach(function (location) {
+            L.marker(location.coords).addTo(map).bindPopup(location.text);
+        });
+    </script>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Georg Forsters Weltreisen | Entdecke die Vielfalt der Kulturen</p>
     </footer>
 
 </body>
+
 </html>

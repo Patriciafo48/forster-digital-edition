@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digitale Edition - Georg Forster</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -35,7 +36,7 @@
     }
     main {
       padding: 2rem;
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
       background: white;
       border-radius: 8px;
@@ -44,6 +45,11 @@
     }
     main.active {
       display: block;
+    }
+    #mapCanvas {
+      height: 500px;
+      width: 100%;
+      border: 1px solid #ddd;
     }
     #transcriptionContainer {
       display: flex;
@@ -62,14 +68,6 @@
       overflow-y: auto;
       max-height: 500px;
     }
-    .chapter {
-      cursor: pointer;
-      padding: 10px;
-      background: #8c7b75;
-      color: white;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
@@ -84,29 +82,33 @@
   </nav>
   <main id="home" class="active">
     <h2>Willkommen zur digitalen Edition</h2>
-    <p>Hier finden Sie die Reiseberichte von Georg Forster.</p>
+    <p>Hier finden Sie die digitalisierten und transkribierten Reiseberichte von Georg Forster.</p>
   </main>
   <main id="transcriptions">
     <h2>Transkriptionen</h2>
     <div class="chapter" onclick="loadTranscription('0001_p017.xml')">Erstes Kapitel</div>
     <div id="transcriptionContainer">
-      <img id="facsimile" src="0001_p017.jpg" alt="Faksimile">
+      <div style="width: 50%;">
+        <img id="facsimile" src="0001_p017.jpg" alt="Faksimile">
+      </div>
       <div id="transcriptionContent">
+        <h3>Transkription</h3>
         <p>Wählen Sie ein Kapitel, um die Transkription anzuzeigen.</p>
       </div>
     </div>
   </main>
   <main id="map">
     <h2>Interaktive Weltkarte</h2>
-    <div id="mapCanvas" style="height: 500px; width: 100%; border: 1px solid #ddd;"></div>
+    <div id="mapCanvas"></div>
   </main>
   <main id="about">
     <h2>Über das Projekt</h2>
-    <p>Dieses Projekt wurde im Rahmen des Digital Humanities Seminars entwickelt, um historische Dokumente zu transkribieren und digital zugänglich zu machen.</p>
+    <p>Dieses Projekt wurde im Rahmen des Digital Humanities Seminars entwickelt, um historische Dokumente zu transkribieren und digital zugänglich zu machen. Ziel ist es, die Reiseberichte von Georg Forster zu analysieren und interaktiv darzustellen.</p>
   </main>
   <footer>
     <p>&copy; 2024 Digital Humanities Projekt</p>
   </footer>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     function showTab(tabId) {
       document.querySelectorAll('main').forEach(main => main.classList.remove('active'));
@@ -130,6 +132,17 @@
         })
         .catch(error => console.error("Fehler beim Laden der XML-Datei:", error));
     }
+    function initializeMap() {
+      var map = L.map('mapCanvas').setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      if (document.getElementById("mapCanvas")) {
+        initializeMap();
+      }
+    });
   </script>
 </body>
 </html>

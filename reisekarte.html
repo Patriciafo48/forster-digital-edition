@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reisekarte - Reiseberichte von Georg Forster</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         body {
             font-family: 'Merriweather', serif;
@@ -78,13 +78,13 @@
         .card p {
             color: #444;
         }
-        
+
         #map {
-        height: 400px;
-        width: 100%;
-        border-radius: 10px;
-        margin-top: 1rem;
-      }
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 
@@ -116,28 +116,28 @@
     </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Initialisiere die Karte
-    var map = L.map('map').setView([51.1657, 10.4515], 5); // Deutschland als Startpunkt
+    <script>
+        // Initialisiere die Karte
+        var map = L.map('map').setView([51.1657, 10.4515], 4); // Deutschland als Startpunkt, Zoomlevel angepasst
 
-    // Füge eine OpenStreetMap-Kachel hinzu
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        // Füge eine OpenStreetMap-Kachel hinzu
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    // Beispielmarker für Orte von Forsters Reisen
-    var places = [
-      { coords: [48.8566, 2.3522], text: "Paris" },
-      { coords: [-17.6509, -149.4260], text: "Tahiti" },
-      { coords: [51.5074, -0.1278], text: "London" }
-    ];
+        // Beispielmarker für Orte von Forsters Reisen
+        var places = [
+            { coords: [48.8566, 2.3522], text: "Paris" },
+            { coords: [-17.6509, -149.4260], text: "Tahiti" },
+            { coords: [51.5074, -0.1278], text: "London" }
+        ];
 
-    places.forEach(function(place) {
-      L.marker(place.coords).addTo(map)
-        .bindPopup(place.text)
-        .openPopup();
-    });
-  </script>
+        places.forEach(function(place) {
+            L.marker(place.coords).addTo(map)
+                .bindPopup(place.text)
+                .openPopup();
+        });
+    </script>
 </body>
 
 </html>

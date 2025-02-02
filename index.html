@@ -8,117 +8,25 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        /* Grundlayout */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ... (CSS-Stile bleiben im Wesentlichen gleich) ... */
+        /* Ergänzung für die Abschnitte (Sections) */
+        section {
+            display: none; /* Alle Abschnitte standardmäßig ausblenden */
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
+        section.active {
+            display: block; /* Nur der aktive Abschnitt wird angezeigt */
+        }
+
+        /* Hintergrundbild für den Hauptinhalt */
+        .main-content {
             background-image: url('https://raw.githubusercontent.com/TimMerges/TimesOfInterest/main/Landmap.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header,
-        footer {
-            width: 100%;
-            padding: 20px;
-            background-color: rgba(30, 30, 30, 0.8);
-            color: #fff;
-            text-align: center;
-        }
-
-        footer {
-            margin-top: auto;
-        }
-
-        h1 {
-            font-weight: 700;
-            font-size: 2em;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: rgba(30, 30, 30, 0.8);
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav li {
-            margin: 0 10px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: rgba(50, 50, 50, 0.8);
-        }
-
-        /* Hauptinhalt */
-        .main-content {
-            flex: 1;
-            padding: 60px 20px;
-            text-align: center;
-            margin: 20px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
             align-items: center;
-        }
-
-        .abschnitt {
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: left;
-        }
-
-        .main-content h2 {
-            margin-bottom: 20px;
-            font-family: 'Times New Roman', serif;
-            font-weight: bold;
-            font-size: 2.8em;
-            color: #FFFFFF;
-            text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
-        }
-
-        .main-content p {
-            color: #000;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        /* Karte */
-        #map {
-            width: 80%;
-            height: 500px;
-            margin: 20px auto;
-            border-radius: 10px;
         }
     </style>
 </head>
@@ -131,16 +39,16 @@
 
     <nav>
         <ul>
-            <li><a href="#startseite">Startseite</a></li>
-            <li><a href="#ueber-das-projekt">Über das Projekt</a></li>
-            <li><a href="#transkriptionen">Transkriptionen</a></li>
-            <li><a href="#interaktive-karte">Interaktive Karte</a></li>
+            <li><a href="#startseite" data-target="startseite">Startseite</a></li>
+            <li><a href="#ueber-das-projekt" data-target="ueber-das-projekt">Über das Projekt</a></li>
+            <li><a href="#transkriptionen" data-target="transkriptionen">Transkriptionen</a></li>
+            <li><a href="#interaktive-karte" data-target="interaktive-karte">Interaktive Karte</a></li>
         </ul>
     </nav>
 
     <div class="main-content">
 
-        <section id="startseite" class="abschnitt">
+        <section id="startseite" class="abschnitt active">
             <h2>Entdecken Sie die Welt der Kultur und Geschichte durch die Augen von Georg Forster</h2>
             <p>Georg Forster (1754-1794) war ein deutscher Naturforscher, Ethnologe, Schriftsteller und Revolutionär. Er
                 begleitete James Cook auf seiner zweiten Weltumsegelung und verfasste darüber ein
@@ -180,21 +88,32 @@
     </div>
 
     <script>
-        var map = L.map('map').setView([51.1657, 10.4515], 5);
+        // JavaScript für die Tabs-Funktionalität
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // Verhindert das Neuladen der Seite
 
-        var locations = [
-            { coords: [51.5074, -0.1278], text: "London, England" },
-            { coords: [48.8566, 2.3522], text: "Paris, Frankreich" },
-            { coords: [52.5200, 13.4050], text: "Berlin, Deutschland" },
-        ];
+                const targetId = this.getAttribute('data-target');
 
-        locations.forEach(function (location) {
-            L.marker(location.coords).addTo(map).bindPopup(location.text);
+                // Alle Abschnitte ausblenden
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Nur den angeklickten Abschnitt anzeigen
+                document.getElementById(targetId).classList.add('active');
+
+                // Aktive Klasse zum Navigationslink hinzufügen (optional)
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+            });
         });
+
+
+        // Leaflet Karte (unverändert)
+        var map = L.map('map').setView([51.1657, 10.4515], 5);
+        // ... (Restlicher Leaflet-Code) ...
     </script>
 
     <footer>

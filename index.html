@@ -18,6 +18,10 @@
         body {
             font-family: 'Roboto', sans-serif;
             color: #333;
+            background-image: url('https://raw.githubusercontent.com/TimMerges/TimesOfInterest/main/Landmap.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -84,13 +88,13 @@
             align-items: center;
         }
 
-        .startseite-inhalt {
-            background-color: rgba(255, 255, 255, 0.7); /* Leicht transparentes Weiß für den Hintergrund */
+        .abschnitt {
+            background-color: rgba(255, 255, 255, 0.7);
             padding: 20px;
             border-radius: 10px;
-            margin: 20px auto; /* Zentrieren und etwas Abstand */
-            max-width: 800px; /* Maximale Breite für bessere Lesbarkeit */
-            text-align: left; /* Text linksbündig */
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
         }
 
         .main-content h2 {
@@ -103,10 +107,10 @@
         }
 
         .main-content p {
-            color: #000; /* Schwarze Schriftfarbe für besseren Kontrast auf dem hellen Hintergrund */
-            font-size: 1.2em; /* Etwas größere Schriftgröße für bessere Lesbarkeit */
-            margin-bottom: 15px; /* Etwas mehr Abstand zwischen Absätzen */
-            line-height: 1.6; /* Zeilenabstand für bessere Lesbarkeit */
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         /* Karte */
@@ -136,7 +140,7 @@
 
     <div class="main-content">
 
-        <div id="startseite" class="startseite-inhalt">
+        <section id="startseite" class="abschnitt">
             <h2>Entdecken Sie die Welt der Kultur und Geschichte durch die Augen von Georg Forster</h2>
             <p>Georg Forster (1754-1794) war ein deutscher Naturforscher, Ethnologe, Schriftsteller und Revolutionär. Er
                 begleitete James Cook auf seiner zweiten Weltumsegelung und verfasste darüber ein
@@ -146,9 +150,9 @@
             <p>Forsters Reiseberichte vermitteln nicht nur geographische und naturkundliche Kenntnisse, sondern auch
                 Einblicke in die Kulturen und Lebensweisen der bereisten Völker. Seine Werke sind bis heute von
                 Bedeutung für die Völkerkunde und die Aufklärung.</p>
-        </div>
+        </section>
 
-        <div id="ueber-das-projekt">
+        <section id="ueber-das-projekt" class="abschnitt">
             <h2>Über das Projekt</h2>
             <p>
                 Im Rahmen unseres Projektmoduls in Digital Humanities haben wir uns entschieden, eine digitale Edition von
@@ -156,23 +160,22 @@
                 Öffentlichkeit zugänglich zu machen und die Forschung zu seinen Texten zu fördern.
             </p>
             <p>
-                Die digitale Edition soll nicht nur dieTranskriptionen derOriginaltexte enthalten, sondern auch
+                Die digitale Edition soll nicht nur die Transkriptionen der Originaltexte enthalten, sondern auch
                 zusätzliche Informationen und interaktive Elemente wie eine Karte von Forsters Reiseroute.
             </p>
-        </div>
+        </section>
 
-        <div id="transkriptionen">
+        <section id="transkriptionen" class="abschnitt">
             <h2>Transkriptionen</h2>
             <p>Hier werden die Transkriptionen von Georg Forsters Reiseberichten nach Kapiteln geordnet
                 erscheinen, sobald sie fertiggestellt sind.
             </p>
-        </div>
+        </section>
 
-        <div id="interaktive-karte">
+        <section id="interaktive-karte" class="abschnitt">
             <h2>Interaktive Karte</h2>
             <div id="map"></div>
-        </div>
-
+        </section>
 
     </div>
 

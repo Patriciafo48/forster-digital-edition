@@ -1,115 +1,218 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forster Digital Edition</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georg Forsters Schriften</title>
+    <!-- Google Fonts für moderne Schriftarten -->
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-ugSVxsRpWvBx1IDvchG5H3itHeTO1IoDnL+6HLjxmxW3zE5lj3dGLnUo8R64hYZzkE8ugPknj9t6ae3Dz4UtgQ==" crossorigin="anonymous"/>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha384-mDHSN9O6CQOaLOE8cbJp+sEDjU+NrMuZ8c7ODrW3mEuyRjXi1tMmtMMDzJouQBZG" crossorigin=""/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha384-NbD05mrOBgkaGVCCLGu7nYwx65zAGwKcyi+k8s5dmi+zC/B9Y7c1lPTJFmDRbLXD" crossorigin=""></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-QVjF8N3xXRXBlAhvHnKN4BmbWyRVt4pD9pZ7wRLD8TzWpFE6H1oD7RbHbDgCT4WsjCl8Vlx6WLmP25zMOuvB7A==" crossorigin="anonymous"></script>
+
+    <style>
+        /* Grundlayout für die Seite */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+
+        body {
+            background-image: url('https://raw.githubusercontent.com/TimMerges/TimesOfInterest/main/Landmap.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header, footer {
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(30, 30, 30, 0.8);
+            color: #fff;
+            text-align: center;
+            }
+
+    /* Button-Design */
+    .btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        color: #FFFFFF;
+        background-color: #007bff; /* Blau */
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        text-align: center;
+        transition: background-color 0.3s ease;
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
+    .btn:hover {
+        background-color: #0056b3; /* Dunkleres Blau beim Hover */
     }
+        }
 
-    header {
-      background-color: #007acc;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-    }
+        footer {
+            margin-top: auto;
+        }
 
-    nav {
-      background-color: #005fa3;
-      padding: 10px 0;
-      text-align: center;
-    }
+        h1 {
+            font-weight: 700;
+            font-size: 2em;
+        }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+        /* Hauptinhalt */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .main-content h2 {
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Schatten für bessere Lesbarkeit */
+            font-family: 'Times New Roman', serif; /* Klassische, elegante Schriftart */
+            font-weight: bold; /* Fettschrift */
+            font-size: 2.8em; /* Große Schriftgröße */
+            color: #FFFFFF; /* Goldene Farbe */
+            text-shadow: 
+        2px 2px 0px #000, /* Schwarzer Schatten */
+        -2px -2px 0px #000, /* Zusätzlicher Schatten für mehr Tiefe */
+        2px -2px 0px #000,
+        -2px 2px 0px #000;
+    text-align: center; /* Zentriert */
+    margin-top: -20px; /* Abstand nach oben */
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+        .main-content p {
+    color: #ffffff; /* Weiße Farbe */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Optional: Schatten für bessere Lesbarkeit */
+    font-size: 1.4em; /* Optional: Größere Schrift */
+    text-align: center; /* Zentrieren des Textes */
+}
 
-    main {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-    }
+        /* Navigationsbuttons */
+        .nav-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
 
-    img {
-      max-width: 100%;
-      margin: 20px 0;
-    }
+        .nav-button {
+            background-color: rgba(30, 30, 30, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    footer {
-      background-color: #007acc;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      margin-top: 30px;
-    }
+        .nav-button:hover {
+            background-color: rgba(50, 50, 50, 0.8);
+        }
 
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
+        .nav-button img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Forster Digital Edition</h1>
-  </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="transcription.html">Transkriptionen</a></li>
-    </ul>
-  </nav>
+    <!-- Header -->
+    <header>
+        <h1>Georg Forsters Weltreisen</h1>
+        <a href="info.html" class="btn">Über diese Website</a>
 
-  <main>
-    <h2>Willkommen zur digitalen Edition von Georg Forsters Reiseberichten</h2>
-    <p>Hier kannst du Transkriptionen und digitale Scans historischer Dokumente erkunden.</p>
+    </header>
+    
+    <div id="map" style="width: 100%; height: 500px; margin-top: 20px;"></div>
 
-    <section>
-      <h3>Transkriptionen anzeigen</h3>
-      <ul>
-        <li><a href="0001_p017.xml">Transkription 1 anzeigen (Seite 1)</a></li>
-      </ul>
 
-      <img src="0001_p017.jpg" alt="Scan der Seite 1 des Reiseberichts">
+    <!-- Hauptinhalt -->
+    <div class="main-content">
+        <h2>Entdecken Sie die Welt der Kultur und Geschichte durch die Augen von Georg Forster</h2>
+        <p>Bitte wählen Sie eine der folgenden Optionen:</p>
+        <div class="nav-buttons">
+            <a href="timeline.html" class="nav-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Ancestors_2.gif" alt="Geschichte">
+                Geschichte des Kulturschutzes
+            </a>
+            <a href="karte.html" class="nav-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Winkel-tripel-projection.jpg" alt="Karte">
+                Kulturstätten weltweit
+            </a>
+            <a href="page199.html" class="nav-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Book_icon.png" alt="Seite 199">
+                Seite 199
+            </a>
+        </div>
+    </div>
 
-    </section>
-  </main>
+    <!-- Füge den Leaflet-Karteninitialisierungscode hier ein -->
+<script>
+    // Initialisiere die Karte
+    var map = L.map('map').setView([51.1657, 10.4515], 5); // Koordinaten für Deutschland (Zentrum)
 
-  <footer>
-    <p>&copy; 2025 Forster Digital Edition | Erstellt von Patriciafo48</p>
-  </footer>
+    // Füge ein Kartenlayer hinzu (OpenStreetMap)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Beispiel: Marker für die Reiseziele von Georg Forster
+    var locations = [
+        { coords: [51.5074, -0.1278], text: "London, England" }, // Beispiel: London
+        { coords: [48.8566, 2.3522], text: "Paris, Frankreich" }, // Beispiel: Paris
+        { coords: [52.5200, 13.4050], text: "Berlin, Deutschland" }, // Beispiel: Berlin
+    ];
+
+    locations.forEach(function(location) {
+        L.marker(location.coords).addTo(map).bindPopup(location.text);
+    });
+</script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Georg Forsters Weltreisen | Entdecke die Vielfalt der Kulturen</p>
+    </footer>
+
 </body>
 </html>

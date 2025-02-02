@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transkription anzeigen</title>
+</head>
+<body>
+  <h1>Georg Forster Transkription</h1>
+  <div id="transcription-output"></div>
+
+  <script>
+    function loadXMLWithXSLT(xmlFile, xsltFile) {
+      const xhrXML = new XMLHttpRequest();
+      const xhrXSLT = new XMLHttpRequest();
+
+      xhrXML.open("GET", xmlFile, true);
+      xhrXSLT.open("GET", xsltFile, true);
+
+      xhrXML.onload = function () {
+        xhrXSLT.onload = function () {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xhrXML.responseText, "application/xml");
+          const xsltDoc = parser.parseFromString(xhrXSLT.responseText, "application/xml");
+
+          const xsltProcessor = new XSLTProcessor();
+          xsltProcessor.importStylesheet(xsltDoc);
+
+          const resultDocument = xsltProcessor.transformToFragment(xmlDoc, document);
+          document.getElementById("transcription-output").appendChild(resultDocument);
+        };
+        xhrXSLT.send();
+      };
+      xhrXML.send();
+    }
+
+    // Laden der Dateien beim Start
+    window.onload = function () {
+      loadXMLWithXSLT("0001_p017.xml", "transcription.xsl");
+    };
+  </script>
+</body>
+</html>

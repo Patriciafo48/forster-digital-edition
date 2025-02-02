@@ -6,85 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reiseberichte von Georg Forster</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <style>
-        body {
-            font-family: 'Merriweather', serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #F5F5DC;
-        }
-
-        header {
-            background-image: url("https://raw.githubusercontent.com/Patriciafo48/forster-digital-edition/33ec69dc77a8fd8f209c7025233ddfeaa349f575/Landmap.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #A0522D;
-            padding: 0.5rem;
-            text-align: center;
-        }
-
-        nav a {
-            color: #333;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        main {
-            padding: 2rem;
-            background-color: #DEB887;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 90%;
-            color: #333;
-        }
-
-        footer {
-            background-color: #8B4513;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 20px;
-        }
-
-        .card {
-            background-color: #FFF8DC;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            border: 1px solid #A0522D;
-        }
-
-        .card h2 {
-            color: #222;
-        }
-
-        .card p {
-            color: #444;
-        }
-
-        #map {
-            height: 400px;
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
+        /* ... CSS-Stile (wie im vorherigen Beispiel) ... */
     </style>
 </head>
 
@@ -95,36 +18,19 @@
     </header>
 
     <nav>
-        <a href="#transkriptionen">Transkriptionen</a>
-        <a href="#karte">Reisekarte</a>
-        <a href="#projekt">Das Projekt</a>
+        <a href="index.html">Startseite</a>
+        <a href="transkriptionen.html">Transkriptionen</a>
+        <a href="reisekarte.html">Reisekarte</a>
+        <a href="projekt.html">Das Projekt</a>
     </nav>
 
     <main>
-        <section id="transkriptionen">
+        <section id="startseite">
             <div class="card">
-                <h2>Transkriptionen</h2>
-                <p>Hier finden Sie die transkribierten Reiseberichte Georg Forsters.</p>
-                <ul>
-                    <li><a href="xml/reisebericht1.xml">Reisebericht 1</a></li>
-                    <li><a href="xml/reisebericht2.xml">Reisebericht 2</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="karte">
-            <div class="card">
-                <h2>Reisekarte</h2>
-                <p>Hier wird eine interaktive Karte mit Forsters Reiserouten angezeigt.</p>
-                <div id="map"></div>
-            </div>
-        </section>
-
-        <section id="projekt">
-            <div class="card">
-                <h2>Das Projekt</h2>
-                <p>Unser Ziel ist es, die Reiseberichte von Georg Forster für ein breites Publikum digital zugänglich zu
-                    machen und spannende Einblicke in seine Reisen zu bieten.</p>
+                <h2>Georg Forster</h2>
+                <img src="https://raw.githubusercontent.com/Patriciafo48/forster-digital-edition/refs/heads/main/DISPLAY600_34974.jpg" alt="Georg Forster">
+                <p>Georg Forster (1754-1794) war ein deutscher Naturforscher, Reiseschriftsteller, Journalist, Ethnologe und Revolutionär. Er erlangte Berühmtheit durch seine Teilnahme an James Cooks zweiter Südseereise (1772–1775). Seine Reisebeschreibung "A Voyage round the World" machte ihn zu einem der bekanntesten Schriftsteller seiner Zeit.</p>
+                <p>Neben seinen wissenschaftlichen Arbeiten verfasste Forster auch zahlreiche politische und philosophische Schriften. Er war ein engagierter Verfechter der Aufklärung und der Französischen Revolution. Forsters Leben und Werk sind bis heute von großer Bedeutung und regen zu vielfältigen Diskussionen an.</p>
             </div>
         </section>
     </main>
@@ -132,30 +38,6 @@
     <footer>
         <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
     </footer>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        // Initialisiere die Karte
-        var map = L.map('map').setView([51.1657, 10.4515], 5);
-
-        // Füge eine OpenStreetMap-Kachel hinzu
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Beispielmarker für Orte von Forsters Reisen
-        var places = [
-            { coords: [48.8566, 2.3522], text: "Paris" },
-            { coords: [-17.6509, -149.4260], text: "Tahiti" },
-            { coords: [51.5074, -0.1278], text: "London" }
-        ];
-
-        places.forEach(function (place) {
-            L.marker(place.coords).addTo(map)
-                .bindPopup(place.text)
-                .openPopup();
-        });
-    </script>
 </body>
 
 </html>

@@ -18,13 +18,9 @@
         body {
             font-family: 'Roboto', sans-serif;
             color: #333;
-            background-image: url('https://raw.githubusercontent.com/TimMerges/TimesOfInterest/main/Landmap.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full viewport height */
+            min-height: 100vh;
         }
 
         header,
@@ -37,7 +33,7 @@
         }
 
         footer {
-            margin-top: auto; /* Push footer to the bottom */
+            margin-top: auto;
         }
 
         h1 {
@@ -57,11 +53,11 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* Center the tabs */
+            justify-content: center;
         }
 
         nav li {
-            margin: 0 10px; /* Add spacing between tabs */
+            margin: 0 10px;
         }
 
         nav a {
@@ -76,7 +72,6 @@
             background-color: rgba(50, 50, 50, 0.8);
         }
 
-
         /* Hauptinhalt */
         .main-content {
             flex: 1;
@@ -89,6 +84,15 @@
             align-items: center;
         }
 
+        .startseite-inhalt {
+            background-color: rgba(255, 255, 255, 0.7); /* Leicht transparentes Weiß für den Hintergrund */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto; /* Zentrieren und etwas Abstand */
+            max-width: 800px; /* Maximale Breite für bessere Lesbarkeit */
+            text-align: left; /* Text linksbündig */
+        }
+
         .main-content h2 {
             margin-bottom: 20px;
             font-family: 'Times New Roman', serif;
@@ -99,19 +103,18 @@
         }
 
         .main-content p {
-            color: #ffffff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-            font-size: 1.4em;
-            text-align: center;
-            margin-bottom: 20px; /* Space below the intro text */
+            color: #000; /* Schwarze Schriftfarbe für besseren Kontrast auf dem hellen Hintergrund */
+            font-size: 1.2em; /* Etwas größere Schriftgröße für bessere Lesbarkeit */
+            margin-bottom: 15px; /* Etwas mehr Abstand zwischen Absätzen */
+            line-height: 1.6; /* Zeilenabstand für bessere Lesbarkeit */
         }
 
         /* Karte */
         #map {
-            width: 80%; /* Adjust map width as needed */
+            width: 80%;
             height: 500px;
-            margin: 20px auto; /* Center the map */
-            border-radius: 10px; /* Rounded corners for the map */
+            margin: 20px auto;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -124,19 +127,53 @@
 
     <nav>
         <ul>
-            <li><a href="#">Startseite</a></li>
-            <li><a href="#">Über das Projekt</a></li>
-            <li><a href="#">Transkriptionen</a></li>
-            <li><a href="#">Interaktive Karte</a></li>
+            <li><a href="#startseite">Startseite</a></li>
+            <li><a href="#ueber-das-projekt">Über das Projekt</a></li>
+            <li><a href="#transkriptionen">Transkriptionen</a></li>
+            <li><a href="#interaktive-karte">Interaktive Karte</a></li>
         </ul>
     </nav>
 
     <div class="main-content">
-        <h2>Entdecken Sie die Welt der Kultur und Geschichte durch die Augen von Georg Forster</h2>
-        <p>Willkommen zu unserer digitalen Edition von Georg Forsters Reiseberichten. Erkunden Sie seine faszinierenden
-            Reisen und entdecken Sie die Vielfalt der Kulturen.</p>
 
-        <div id="map"></div>
+        <div id="startseite" class="startseite-inhalt">
+            <h2>Entdecken Sie die Welt der Kultur und Geschichte durch die Augen von Georg Forster</h2>
+            <p>Georg Forster (1754-1794) war ein deutscher Naturforscher, Ethnologe, Schriftsteller und Revolutionär. Er
+                begleitete James Cook auf seiner zweiten Weltumsegelung und verfasste darüber ein
+                bedeutendes Werk, das ihn berühmt machte.
+            </p>
+
+            <p>Forsters Reiseberichte vermitteln nicht nur geographische und naturkundliche Kenntnisse, sondern auch
+                Einblicke in die Kulturen und Lebensweisen der bereisten Völker. Seine Werke sind bis heute von
+                Bedeutung für die Völkerkunde und die Aufklärung.</p>
+        </div>
+
+        <div id="ueber-das-projekt">
+            <h2>Über das Projekt</h2>
+            <p>
+                Im Rahmen unseres Projektmoduls in Digital Humanities haben wir uns entschieden, eine digitale Edition von
+                Georg Forsters Reiseberichten zu erstellen. Ziel des Projekts ist es, Forsters Werke einer breiten
+                Öffentlichkeit zugänglich zu machen und die Forschung zu seinen Texten zu fördern.
+            </p>
+            <p>
+                Die digitale Edition soll nicht nur dieTranskriptionen derOriginaltexte enthalten, sondern auch
+                zusätzliche Informationen und interaktive Elemente wie eine Karte von Forsters Reiseroute.
+            </p>
+        </div>
+
+        <div id="transkriptionen">
+            <h2>Transkriptionen</h2>
+            <p>Hier werden die Transkriptionen von Georg Forsters Reiseberichten nach Kapiteln geordnet
+                erscheinen, sobald sie fertiggestellt sind.
+            </p>
+        </div>
+
+        <div id="interaktive-karte">
+            <h2>Interaktive Karte</h2>
+            <div id="map"></div>
+        </div>
+
+
     </div>
 
     <script>

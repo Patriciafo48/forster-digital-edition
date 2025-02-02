@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reisekarte - Reiseberichte von Georg Forster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        /* ... CSS-Stile (wie im vorherigen Beispiel) ... */
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reiseberichte von Georg Forster</h1>
+        <p>Eine digitale Edition historischer Reisen</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Startseite</a>
+        <a href="transkriptionen.html">Transkriptionen</a>
+        <a href="reisekarte.html">Reisekarte</a>
+        <a href="projekt.html">Das Projekt</a>
+    </nav>
+
+    <main>
+        <section id="karte">
+            <div class="card">
+                <h2>Reisekarte</h2>
+                <p>Hier wird eine interaktive Karte mit Forsters Reiserouten angezeigt.</p>
+                <div id="map"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialisiere die Karte
+        var map = L.map('map').setView([51.1657, 10.4515], 5);
+
+        // Füge eine OpenStreetMap-Kachel hinzu
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Beispielmarker für Orte von Forsters Reisen
+        var places = [
+            { coords: [48.8566, 2.3522], text: "Paris" },
+            { coords: [-17.6509, -149.4260], text: "Tahiti" },
+            { coords: [51.5074, -0.1278], text: "London" }
+        ];
+
+        places.forEach(function (place) {
+            L.marker(place.coords).addTo(map)
+                .bindPopup(place.text)
+                .openPopup();
+        });
+    </script>
+</body>
+
+</html>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reiseberichte von Georg Forster</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: 'Merriweather', serif;
@@ -60,7 +61,7 @@
             margin-top: 20px;
         }
 
-        .card {
+      .card {
             background-color: #FFF8DC;
             margin: 2rem auto;
             padding: 1.5rem;
@@ -70,42 +71,68 @@
             border: 1px solid #A0522D;
         }
 
-        .card h2 {
+      .card h2 {
             color: #222;
         }
 
-        .card p {
+      .card p {
             color: #444;
+        }
+
+        /* Anpassung für mobile Geräte */
+        @media (max-width: 768px) {
+          .card {
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Reiseberichte von Georg Forster</h1>
-        <p>Eine digitale Edition historischer Reisen</p>
+        <div class="container">
+            <h1>Reiseberichte von Georg Forster</h1>
+            <p>Eine digitale Edition historischer Reisen</p>
+        </div>
     </header>
 
     <nav>
-        <a href="index.html">Startseite</a>
-        <a href="transkriptionen.html">Transkriptionen</a>
-        <a href="reisekarte.html">Reisekarte</a>
-        <a href="projekt.html">Das Projekt</a>
+        <div class="container">
+            <a href="index.html">Startseite</a>
+            <a href="transkriptionen.html">Transkriptionen</a>
+            <a href="reisekarte.html">Reisekarte</a>
+            <a href="projekt.html">Das Projekt</a>
+        </div>
     </nav>
 
     <main>
-        <section id="startseite">
-            <div class="card">
-                <h2>Georg Forster</h2>
-                <img src="https://raw.githubusercontent.com/Patriciafo48/forster-digital-edition/refs/heads/main/DISPLAY600_34974.jpg" alt="Georg Forster">
-                <p>Georg Forster (1754-1794) war ein deutscher Naturforscher, Reiseschriftsteller, Journalist, Ethnologe und Revolutionär. Er erlangte Berühmtheit durch seine Teilnahme an James Cooks zweiter Südseereise (1772–1775). Seine Reisebeschreibung "A Voyage round the World" machte ihn zu einem der bekanntesten Schriftsteller seiner Zeit.</p>
-                <p>Neben seinen wissenschaftlichen Arbeiten verfasste Forster auch zahlreiche politische und philosophische Schriften. Er war ein engagierter Verfechter der Aufklärung und der Französischen Revolution. Forsters Leben und Werk sind bis heute von großer Bedeutung und regen zu vielfältigen Diskussionen an.</p>
-            </div>
-        </section>
+        <div class="container">
+            <section id="startseite">
+                <div class="card">
+                    <h2>Georg Forster</h2>
+                    <img src="https://raw.githubusercontent.com/Patriciafo48/forster-digital-edition/refs/heads/main/DISPLAY600_34974.jpg"
+                        alt="Georg Forster">
+                    <p>Georg Forster (1754-1794) war ein deutscher Naturforscher, Reiseschriftsteller, Journalist,
+                        Ethnologe und Revolutionär. Er erlangte Berühmtheit durch seine Teilnahme an James Cooks zweiter
+                        Südseereise (1772–1775). Seine Reisebeschreibung "A Voyage round the World" machte ihn zu einem
+                        der bekanntesten Schriftsteller seiner Zeit.</p>
+                    <p>Neben seinen wissenschaftlichen Arbeiten verfasste Forster auch zahlreiche politische und
+                        philosophische Schriften. Er war ein engagierter Verfechter der Aufklärung und der Französischen
+                        Revolution. Forsters Leben und Werk sind bis heute von großer Bedeutung und regen zu
+                        vielfältigen Diskussionen an.</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
+        <div class="container">
+            <p>&copy; 2025 Projektmodul Digital Humanities | Georg Forster Edition</p>
+        </div>
     </footer>
 </body>
 
